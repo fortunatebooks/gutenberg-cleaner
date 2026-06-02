@@ -1,0 +1,21 @@
+The Project Gutenberg eBook of Example Book
+Title: Example Book
+Author: Ada Writer
+
+*** START OF THE PROJECT GUTENBERG EBOOK EXAMPLE BOOK ***
+
+CONTENTS
+Chapter I ........ 1
+chapter-1.xhtml#id
+
+CHAPTER I
+
+A paragraph from the book with enough words to look like prose after a heading.
+
+* * *
+
+CHAPTER II
+
+Another paragraph from the book with enough words to look like prose too.
+
+*** END OF THE PROJECT GUTENBERG EBOOK EXAMPLE BOOK ***

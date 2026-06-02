@@ -1,0 +1,25 @@
+The Project Gutenberg eBook of Sample Stories
+Title: Sample Stories
+Author: Ada Writer
+
+*** START OF THE PROJECT GUTENBERG EBOOK SAMPLE STORIES ***
+
+CONTENTS
+Chapter I ........ 1
+chapter-1.xhtml#p1
+Chapter II ........ 8
+chapter-2.xhtml#p2
+
+CHAPTER I
+
+This is a compact public-domain-style sample fixture. It is not copied from any
+real book, but it mirrors common Gutenberg formatting quirks.
+
+* * *
+
+CHAPTER II
+
+The second chapter keeps the example small while still exercising heading and
+scene-break normalization.
+
+*** END OF THE PROJECT GUTENBERG EBOOK SAMPLE STORIES ***

@@ -1,0 +1,54 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "gutenberg-cleaner"
+version = "0.1.0"
+description = "Clean Project Gutenberg and public-domain texts into tidy Markdown, DOCX, and EPUB-ready manuscripts."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Gutenberg Cleaner Contributors" }]
+keywords = ["gutenberg", "markdown", "epub", "docx", "public-domain", "books", "cli"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Education",
+  "Intended Audience :: End Users/Desktop",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: Text Processing :: Markup :: Markdown",
+  "Topic :: Utilities",
+]
+dependencies = []
+
+[project.optional-dependencies]
+docx = ["python-docx>=1.1.0"]
+dev = ["pytest>=8.0", "ruff>=0.8.0", "build>=1.2.0", "twine>=5.0.0"]
+
+[project.scripts]
+gutenberg-cleaner = "gutenberg_cleaner.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/fortunatebooks/gutenberg-cleaner"
+Source = "https://github.com/fortunatebooks/gutenberg-cleaner"
+Issues = "https://github.com/fortunatebooks/gutenberg-cleaner/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/gutenberg_cleaner"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["UP007"]

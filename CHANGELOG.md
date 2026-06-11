@@ -8,3 +8,5 @@
   artifact removal, scene-break normalization, Markdown/HTML/EPUB writers, and
   optional DOCX output.
 - Added tests, examples, packaging metadata, and GitHub workflow templates.
+- Added CLI output-format validation, supported-format documentation, and
+  package metadata classifiers for the tested Python versions.

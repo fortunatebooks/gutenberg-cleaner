@@ -108,6 +108,8 @@ Another paragraph.
 
 ## Installation
 
+Gutenberg Cleaner supports Python 3.10 and newer.
+
 ### From a fresh clone
 
 ```bash
@@ -152,6 +154,16 @@ dist/gutenberg_sample.md
 dist/gutenberg_sample.report.json
 ```
 
+### Supported output formats
+
+| Format | Output | Notes |
+| --- | --- | --- |
+| `md` | Clean Markdown manuscript | Default format. |
+| `json` | Cleanup report ending in `.report.json` | Default format. |
+| `html` | Standalone HTML document | Uses only the Python standard library. |
+| `epub` | Minimal EPUB 3 file | Uses only the Python standard library. |
+| `docx` | Word document | Requires the optional `docx` extra. |
+
 ### Generate multiple formats
 
 ```bash
@@ -160,7 +172,7 @@ gutenberg-cleaner clean examples/gutenberg_sample.txt \
   --out-dir dist/
 ```
 
-### Generate one exact output file
+### Generate one Markdown output file
 
 ```bash
 gutenberg-cleaner clean input.txt --formats md --out clean.md
@@ -234,8 +246,8 @@ examples/
 
 ```bash
 python -m pip install -e '.[dev]'
-ruff check .
-pytest
+python -m ruff check .
+python -m pytest
 python -m build
 ```
 

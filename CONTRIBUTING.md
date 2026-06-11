@@ -8,8 +8,8 @@ Thanks for helping improve Gutenberg Cleaner.
 python -m venv .venv
 . .venv/bin/activate
 python -m pip install -e '.[dev]'
-pytest
-ruff check .
+python -m pytest
+python -m ruff check .
 ```
 
 ## Good issues and pull requests

@@ -10,7 +10,7 @@ from pathlib import Path
 
 from gutenberg_cleaner import __version__
 from gutenberg_cleaner.cleaner import clean_text
-from gutenberg_cleaner.converters import write_outputs
+from gutenberg_cleaner.converters import SUPPORTED_FORMATS, write_outputs
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -40,7 +40,7 @@ def build_parser() -> argparse.ArgumentParser:
     clean.add_argument(
         "--formats",
         default="md,json",
-        help="Comma-separated formats: md,json,html,epub,docx.",
+        help=f"Comma-separated formats: {','.join(SUPPORTED_FORMATS)}.",
     )
     clean.add_argument("--out", type=Path, help="Output file path for single-format runs.")
     clean.add_argument("--out-dir", type=Path, help="Directory for generated files.")
@@ -58,7 +58,7 @@ def build_parser() -> argparse.ArgumentParser:
 def _clean_command(args: argparse.Namespace) -> int:
     raw = args.input.read_text(encoding="utf-8")
     result = clean_text(raw, title=args.title, author=args.author)
-    formats = [part.strip() for part in args.formats.split(",") if part.strip()]
+    formats = _parse_formats(args.formats)
     output_base = _output_base(args.input, args.out, args.out_dir, formats)
     paths = write_outputs(
         result.markdown,
@@ -71,6 +71,30 @@ def _clean_command(args: argparse.Namespace) -> int:
     for fmt, path in paths.items():
         print(f"{fmt}: {path}")
     return 0
+
+
+def _parse_formats(value: str) -> list[str]:
+    formats: list[str] = []
+    seen: set[str] = set()
+    for part in value.split(","):
+        fmt = part.strip().lower().lstrip(".")
+        if not fmt:
+            continue
+        if fmt not in SUPPORTED_FORMATS:
+            supported = ", ".join(SUPPORTED_FORMATS)
+            raise SystemExit(
+                f"Unsupported output format: {part.strip()}. Supported formats: {supported}."
+            )
+        if fmt not in seen:
+            formats.append(fmt)
+            seen.add(fmt)
+
+    if not formats:
+        supported = ", ".join(SUPPORTED_FORMATS)
+        raise SystemExit(
+            f"At least one output format is required. Supported formats: {supported}."
+        )
+    return formats
 
 
 def _inspect_command(args: argparse.Namespace) -> int:

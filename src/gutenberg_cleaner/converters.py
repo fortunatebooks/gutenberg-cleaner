@@ -13,6 +13,8 @@ from pathlib import Path
 
 from gutenberg_cleaner.reports import CleanupReport
 
+SUPPORTED_FORMATS = ("md", "json", "html", "epub", "docx")
+
 
 def write_outputs(
     markdown: str,
@@ -48,7 +50,10 @@ def write_outputs(
             path = output_base.with_suffix(".docx")
             write_docx(markdown, path=path, title=title, author=author)
         else:
-            raise ValueError(f"Unsupported output format: {fmt}")
+            supported = ", ".join(SUPPORTED_FORMATS)
+            raise ValueError(
+                f"Unsupported output format: {fmt}. Supported formats: {supported}."
+            )
         paths[normalized] = path
 
     return paths
